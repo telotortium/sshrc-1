@@ -131,7 +131,7 @@ include_welcome_msg() {
 # starts the shell
 build_bootstrap_script() {
 	read -r -d '' exec_script <<-EOF
-	trap 'rm -rf \$SSHRCCLEANUP; exit' 0;
+	trap 'chmod -R +w \$SSHRCCLEANUP; rm -rf \$SSHRCCLEANUP; exit' 0;
 	\$SSHHOME/.sshrc.d/sh$([ -z "${cmd}" ] || echo " -c \"${cmd}\"")
 	EOF
 
@@ -139,7 +139,7 @@ build_bootstrap_script() {
 	SSHHOME=\$(mktemp -d -t .$(whoami).sshrc.XXXXXXXX)
 	SSHRCCLEANUP="\$SSHHOME"
 	export SSHHOME SSHRCCLEANUP
-	trap 'rm -rf \$SSHRCCLEANUP; exit' 0
+	trap 'chmod -R +w \$SSHRCCLEANUP; rm -rf \$SSHRCCLEANUP; exit' 0
 
 	${encoded_files-# DEBUG: Skipping transfer of .sshrc and .sshrc.d}
 
