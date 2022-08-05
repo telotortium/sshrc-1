@@ -106,4 +106,6 @@ You can also use the following structure for your ~/.sshrc control flow:
 
 * For larger configurations, consider copying files to an obscure folder on the server and using ~/.sshrc to automatically source those configurations on login.
 
-* To enable tab completion in zsh, add `compdef sshrc=ssh` to your .zshrc file:
+* To enable tab completion in zsh, add `compdef sshrc=ssh` to your .zshrc file.
+
+* To enable tab completion in bash, add `complete -F _ssh sshrc` to your .bashrc file. (This assumes you have installed an SSH completion from the [`bash-completion` package](https://repology.org/project/bash-completion/versions).
